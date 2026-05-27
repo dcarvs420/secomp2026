@@ -138,6 +138,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .f-card p{font-size:13px;color:var(--dim)}
 .f-price{font-family:'DM Mono',monospace;color:var(--c,var(--g1));font-size:13px;margin-top:8px}
 
+/* JOB CARDS - Vagas com conhecimentos coloridos no tema do grupo */
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:12px}
+.job-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--c,var(--g1));border-radius:12px;padding:20px 22px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.job-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.job-card h4{font-size:14px;margin-bottom:4px;color:var(--white);line-height:1.4}
+.job-company{font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.05em;margin-bottom:14px}
+.job-salary{font-family:'DM Mono',monospace;color:var(--c,var(--g1));font-size:13px;margin-bottom:14px;font-weight:500}
+.job-skills-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.job-skills{display:flex;flex-wrap:wrap;gap:6px}
+.job-skill{font-family:'DM Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:var(--cb,var(--g1b));color:var(--c,var(--g1));border:1px solid rgba(255,255,255,.08);transition:transform .15s,border-color .15s}
+.job-skill:hover{transform:scale(1.05);border-color:var(--c,var(--g1))}
+
 /* COST TABLE */
 .cost-row{display:flex;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
 .cost-row:last-child{border-bottom:none}
@@ -492,48 +504,141 @@ const groups = {
         <div class="cost-row"><div class="cost-label">Grande (8–20+ meses)</div><div class="cost-val">R$ 350.000 – 3.000.000+ <span>Plataforma iOS/Android/Web/Desktop unificados</span></div></div>`,
 
       'Vagas & Freelance': `
-        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas coletadas em 2025–2026 e as principais plataformas para trabalho freelancer.</div>
+        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas coletadas em 2025–2026 com os conhecimentos exigidos em destaque.</div>
         <h4 style="margin-bottom:14px;font-size:.95rem">Exemplos de Vagas Reais</h4>
-        <div class="freelance-grid" style="margin-bottom:28px">
-          <div class="f-card">
-            <h4>Estágio Mobile — iFood (SP)</h4>
-            <p>React Native · JS básico · Git · 30h/sem · Híbrido</p>
-            <div class="f-price">R$ 2.200/mês + benefícios</div>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Estágio Mobile</h4>
+            <div class="job-company">iFood · São Paulo · Híbrido · 30h/sem</div>
+            <div class="job-salary">R$ 2.200/mês + benefícios</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">React Native</span>
+              <span class="job-skill">JavaScript</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">HTML/CSS</span>
+              <span class="job-skill">REST APIs</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Júnior Android — Nubank (Remoto)</h4>
-            <p>Kotlin · Jetpack Compose · MVVM · Inglês intermediário</p>
-            <div class="f-price">R$ 6.200–7.500/mês + stock options</div>
+          <div class="job-card">
+            <h4>Desenvolvedor Android Júnior</h4>
+            <div class="job-company">Nubank · 100% Remoto</div>
+            <div class="job-salary">R$ 6.200–7.500/mês + stock options</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Kotlin</span>
+              <span class="job-skill">Jetpack Compose</span>
+              <span class="job-skill">MVVM</span>
+              <span class="job-skill">Coroutines</span>
+              <span class="job-skill">Retrofit</span>
+              <span class="job-skill">Inglês intermediário</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Pleno Flutter — PicPay (Híbrido SP)</h4>
-            <p>Flutter/Dart · BLoC/Riverpod · Clean Architecture · Fastlane</p>
-            <div class="f-price">R$ 10.000–13.500/mês + PLR</div>
+          <div class="job-card">
+            <h4>Desenvolvedor Flutter Pleno</h4>
+            <div class="job-company">PicPay · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 10.000–13.500/mês + PLR</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Flutter/Dart</span>
+              <span class="job-skill">BLoC</span>
+              <span class="job-skill">Riverpod</span>
+              <span class="job-skill">Clean Architecture</span>
+              <span class="job-skill">Fastlane</span>
+              <span class="job-skill">CI/CD</span>
+              <span class="job-skill">Firebase</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Sênior iOS — Mercado Livre (Remoto)</h4>
-            <p>Swift · SwiftUI + UIKit · VIPER · Instruments · Inglês avançado</p>
-            <div class="f-price">R$ 16.000–22.000/mês + stock options</div>
+          <div class="job-card">
+            <h4>iOS Engineer Sênior</h4>
+            <div class="job-company">Mercado Livre · 100% Remoto</div>
+            <div class="job-salary">R$ 16.000–22.000/mês + stock options</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Swift</span>
+              <span class="job-skill">SwiftUI</span>
+              <span class="job-skill">UIKit</span>
+              <span class="job-skill">VIPER</span>
+              <span class="job-skill">Instruments</span>
+              <span class="job-skill">XCTest</span>
+              <span class="job-skill">Inglês avançado</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Júnior Backend — QuintoAndar (Remoto)</h4>
-            <p>Node.js/TypeScript · PostgreSQL · Docker · Jest</p>
-            <div class="f-price">R$ 6.500–8.000/mês</div>
+          <div class="job-card">
+            <h4>Backend Developer Júnior</h4>
+            <div class="job-company">QuintoAndar · 100% Remoto</div>
+            <div class="job-salary">R$ 6.500–8.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Node.js</span>
+              <span class="job-skill">TypeScript</span>
+              <span class="job-skill">PostgreSQL</span>
+              <span class="job-skill">Docker</span>
+              <span class="job-skill">Jest</span>
+              <span class="job-skill">REST APIs</span>
+              <span class="job-skill">Git</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Sênior Java — Itaú (SP)</h4>
-            <p>Spring Boot · Kafka · AWS · Microsserviços · OAuth2</p>
-            <div class="f-price">R$ 18.000–25.000/mês (PJ)</div>
+          <div class="job-card">
+            <h4>Desenvolvedor Java Sênior</h4>
+            <div class="job-company">Itaú · São Paulo · PJ</div>
+            <div class="job-salary">R$ 18.000–25.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Java 17+</span>
+              <span class="job-skill">Spring Boot</span>
+              <span class="job-skill">Kafka</span>
+              <span class="job-skill">AWS</span>
+              <span class="job-skill">Microsserviços</span>
+              <span class="job-skill">OAuth2</span>
+              <span class="job-skill">Kubernetes</span>
+              <span class="job-skill">SQL/NoSQL</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Estágio Frontend — RD Station (Remoto)</h4>
-            <p>HTML/CSS/JS · React básico · Git · Inglês para leitura</p>
-            <div class="f-price">R$ 2.500/mês + VR + VT</div>
+          <div class="job-card">
+            <h4>Estágio Frontend</h4>
+            <div class="job-company">RD Station · 100% Remoto</div>
+            <div class="job-salary">R$ 2.500/mês + VR + VT</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">HTML5</span>
+              <span class="job-skill">CSS3</span>
+              <span class="job-skill">JavaScript</span>
+              <span class="job-skill">React</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">Inglês leitura</span>
+            </div>
           </div>
-          <div class="f-card">
-            <h4>Sênior C++/Qt — Industrial (Campinas)</h4>
-            <p>C++17/20 · Qt · Multithreading · Modbus/OPC-UA</p>
-            <div class="f-price">R$ 13.000–18.000/mês (PJ)</div>
+          <div class="job-card">
+            <h4>Desenvolvedor C++/Qt Sênior</h4>
+            <div class="job-company">Indústria · Campinas · PJ</div>
+            <div class="job-salary">R$ 13.000–18.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">C++17/20</span>
+              <span class="job-skill">Qt 6</span>
+              <span class="job-skill">Multithreading</span>
+              <span class="job-skill">Modbus</span>
+              <span class="job-skill">OPC-UA</span>
+              <span class="job-skill">CMake</span>
+              <span class="job-skill">Linux</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Full Stack Pleno</h4>
+            <div class="job-company">Creditas · 100% Remoto</div>
+            <div class="job-salary">R$ 11.000–15.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">React</span>
+              <span class="job-skill">Next.js</span>
+              <span class="job-skill">Node.js</span>
+              <span class="job-skill">TypeScript</span>
+              <span class="job-skill">PostgreSQL</span>
+              <span class="job-skill">AWS</span>
+              <span class="job-skill">GraphQL</span>
+              <span class="job-skill">Docker</span>
+            </div>
           </div>
         </div>
         <h4 style="margin-bottom:14px;font-size:.95rem">Plataformas Freelance</h4>
@@ -595,7 +700,7 @@ const groups = {
     title: 'Inteligência Artificial & DevOps / Cloud',
     desc: 'IA Generativa, Machine Learning, DevOps e Cloud Computing — as áreas de maior crescimento e remuneração no mercado tech em 2026.',
     color: 'var(--g2)', colorb: 'var(--g2b)',
-    tabs: ['Inteligência Artificial','DevOps / Cloud','Tecnologias & Freelance','Roadmaps'],
+    tabs: ['Inteligência Artificial','DevOps / Cloud','Vagas','Tecnologias & Freelance','Roadmaps'],
     content: {
       'Inteligência Artificial': `
         <div class="demand-grid">
@@ -645,6 +750,158 @@ const groups = {
         <div class="cost-row"><div class="cost-label">Avançada</div><div class="cost-val">R$ 80.000 – 120.000+ <span>Transformação digital multicloud</span></div></div>
         <h4 style="margin:20px 0 10px;font-size:.95rem">Certificações mais valorizadas</h4>
         <div class="techs"><span class="tech">AWS Certified DevOps Engineer</span><span class="tech">Azure DevOps Engineer Expert</span><span class="tech">GCP Professional Cloud DevOps</span><span class="tech">CKA (Kubernetes)</span></div>`,
+
+      'Vagas': `
+        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas em IA, Machine Learning, DevOps e Cloud com os conhecimentos exigidos em destaque.</div>
+        <h4 style="margin-bottom:14px;font-size:.95rem">Inteligência Artificial & Machine Learning</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>AI Engineer Pleno</h4>
+            <div class="job-company">Itaú · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 12.000–16.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Python</span>
+              <span class="job-skill">LangChain</span>
+              <span class="job-skill">LLMs</span>
+              <span class="job-skill">RAG</span>
+              <span class="job-skill">Vector DBs</span>
+              <span class="job-skill">FastAPI</span>
+              <span class="job-skill">AWS Bedrock</span>
+              <span class="job-skill">Prompt Engineering</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Cientista de Dados Sênior</h4>
+            <div class="job-company">Nubank · 100% Remoto</div>
+            <div class="job-salary">R$ 16.000–22.000/mês + stock</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Python</span>
+              <span class="job-skill">SQL</span>
+              <span class="job-skill">Pandas/NumPy</span>
+              <span class="job-skill">Scikit-learn</span>
+              <span class="job-skill">PyTorch</span>
+              <span class="job-skill">Spark</span>
+              <span class="job-skill">A/B Testing</span>
+              <span class="job-skill">Estatística</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>ML Engineer Pleno</h4>
+            <div class="job-company">iFood · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 13.000–18.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Python</span>
+              <span class="job-skill">TensorFlow</span>
+              <span class="job-skill">MLflow</span>
+              <span class="job-skill">Airflow</span>
+              <span class="job-skill">Kubeflow</span>
+              <span class="job-skill">Docker</span>
+              <span class="job-skill">GCP Vertex AI</span>
+              <span class="job-skill">Feature Stores</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Estágio em Data Science</h4>
+            <div class="job-company">Magazine Luiza · 100% Remoto</div>
+            <div class="job-salary">R$ 2.300/mês + benefícios</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Python</span>
+              <span class="job-skill">SQL básico</span>
+              <span class="job-skill">Estatística</span>
+              <span class="job-skill">Pandas</span>
+              <span class="job-skill">Excel</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">Power BI</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Prompt Engineer / AI Consultant</h4>
+            <div class="job-company">Ci&T · 100% Remoto</div>
+            <div class="job-salary">R$ 14.000–20.000/mês (PJ)</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">GPT-4/Claude</span>
+              <span class="job-skill">LangChain</span>
+              <span class="job-skill">LlamaIndex</span>
+              <span class="job-skill">Python</span>
+              <span class="job-skill">Fine-tuning</span>
+              <span class="job-skill">Embeddings</span>
+              <span class="job-skill">Inglês avançado</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:14px;font-size:.95rem">DevOps & Cloud Computing</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>DevOps Engineer Júnior</h4>
+            <div class="job-company">Sensedia · Campinas · Híbrido</div>
+            <div class="job-salary">R$ 5.500–7.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Linux</span>
+              <span class="job-skill">Docker</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">Shell Script</span>
+              <span class="job-skill">Jenkins</span>
+              <span class="job-skill">AWS básico</span>
+              <span class="job-skill">YAML</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>SRE / Cloud Engineer Pleno</h4>
+            <div class="job-company">TOTVS · 100% Remoto</div>
+            <div class="job-salary">R$ 11.000–15.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Kubernetes</span>
+              <span class="job-skill">Terraform</span>
+              <span class="job-skill">AWS</span>
+              <span class="job-skill">Prometheus</span>
+              <span class="job-skill">Grafana</span>
+              <span class="job-skill">GitHub Actions</span>
+              <span class="job-skill">Python</span>
+              <span class="job-skill">Helm</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>DevOps Engineer Sênior</h4>
+            <div class="job-company">Pismo · São Paulo · PJ</div>
+            <div class="job-salary">R$ 18.000–25.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">AWS Avançado</span>
+              <span class="job-skill">Kubernetes</span>
+              <span class="job-skill">Terraform</span>
+              <span class="job-skill">Ansible</span>
+              <span class="job-skill">CI/CD</span>
+              <span class="job-skill">Datadog</span>
+              <span class="job-skill">Go</span>
+              <span class="job-skill">Service Mesh</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Cloud Architect</h4>
+            <div class="job-company">Klabin · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 22.000–30.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Azure</span>
+              <span class="job-skill">AWS</span>
+              <span class="job-skill">Multi-cloud</span>
+              <span class="job-skill">Microsserviços</span>
+              <span class="job-skill">Security</span>
+              <span class="job-skill">FinOps</span>
+              <span class="job-skill">Well-Architected</span>
+              <span class="job-skill">Inglês fluente</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:20px">💡 Certificações como <strong>AWS Solutions Architect</strong>, <strong>CKA</strong> e <strong>Azure AI Engineer</strong> aumentam em 20–40% as ofertas salariais. Conhecimento em LLMs e MLOps é o diferencial mais buscado em 2026.</div>`,
 
       'Tecnologias & Freelance': `
         <div class="info-box" style="margin-bottom:24px">Stack mais exigida nas vagas de IA e DevOps/Cloud em 2026.</div>
@@ -703,7 +960,7 @@ const groups = {
     title: 'IoT & Hardware / Automação',
     desc: 'Internet das Coisas, sistemas embarcados, automação industrial e o ecossistema maker no Brasil.',
     color: 'var(--g3)', colorb: 'var(--g3b)',
-    tabs: ['IoT','Embarcados','Automação','Roadmaps'],
+    tabs: ['IoT','Embarcados','Automação','Vagas','Roadmaps'],
     content: {
       'IoT': `
         <div class="demand-grid">
@@ -773,6 +1030,154 @@ const groups = {
         <div class="cost-row"><div class="cost-label">Médio</div><div class="cost-val">R$ 50.000 – 150.000</div></div>
         <div class="cost-row"><div class="cost-label">Complexo</div><div class="cost-val">R$ 150.000+</div></div>`,
 
+      'Vagas': `
+        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas em IoT, sistemas embarcados e automação industrial com os conhecimentos exigidos em destaque.</div>
+        <h4 style="margin-bottom:14px;font-size:.95rem">IoT & Sistemas Embarcados</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Estágio em IoT/AgTech</h4>
+            <div class="job-company">Raízen · Piracicaba · Presencial</div>
+            <div class="job-salary">R$ 1.800/mês + benefícios</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">C básico</span>
+              <span class="job-skill">Arduino</span>
+              <span class="job-skill">Python básico</span>
+              <span class="job-skill">Eletrônica básica</span>
+              <span class="job-skill">MQTT</span>
+              <span class="job-skill">Sensores</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Desenvolvedor Embarcado Júnior</h4>
+            <div class="job-company">CPQD · Campinas · Híbrido</div>
+            <div class="job-salary">R$ 6.000–8.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">C/C++</span>
+              <span class="job-skill">ESP32</span>
+              <span class="job-skill">FreeRTOS</span>
+              <span class="job-skill">I2C/SPI/UART</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">PlatformIO</span>
+              <span class="job-skill">Osciloscópio</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Engenheiro IoT Pleno</h4>
+            <div class="job-company">Sensedia · Campinas · Remoto</div>
+            <div class="job-salary">R$ 9.000–13.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">AWS IoT Core</span>
+              <span class="job-skill">MQTT</span>
+              <span class="job-skill">Node.js</span>
+              <span class="job-skill">Python</span>
+              <span class="job-skill">InfluxDB</span>
+              <span class="job-skill">Grafana</span>
+              <span class="job-skill">Docker</span>
+              <span class="job-skill">LoRaWAN</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Firmware Engineer Sênior</h4>
+            <div class="job-company">Indústria · Campinas · PJ</div>
+            <div class="job-salary">R$ 14.000–20.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">C/C++ avançado</span>
+              <span class="job-skill">Rust embarcado</span>
+              <span class="job-skill">ARM Cortex-M</span>
+              <span class="job-skill">RISC-V</span>
+              <span class="job-skill">Zephyr RTOS</span>
+              <span class="job-skill">RTOS</span>
+              <span class="job-skill">CAN/Modbus</span>
+              <span class="job-skill">Yocto/Buildroot</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Hardware Designer Pleno</h4>
+            <div class="job-company">Venturus · Campinas · Híbrido</div>
+            <div class="job-salary">R$ 9.500–14.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Altium Designer</span>
+              <span class="job-skill">KiCad</span>
+              <span class="job-skill">PCB Layout</span>
+              <span class="job-skill">Esquemáticos</span>
+              <span class="job-skill">RF/Antenas</span>
+              <span class="job-skill">EMC/EMI</span>
+              <span class="job-skill">Inglês técnico</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:14px;font-size:.95rem">Automação Industrial & RPA</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Desenvolvedor RPA Júnior</h4>
+            <div class="job-company">BotCity · Campinas · Remoto</div>
+            <div class="job-salary">R$ 4.500–6.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Python</span>
+              <span class="job-skill">BotCity SDK</span>
+              <span class="job-skill">Selenium</span>
+              <span class="job-skill">Regex</span>
+              <span class="job-skill">SQL</span>
+              <span class="job-skill">APIs REST</span>
+              <span class="job-skill">Git</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Engenheiro de Automação Pleno</h4>
+            <div class="job-company">Indústria · Piracicaba · Híbrido</div>
+            <div class="job-salary">R$ 7.500–11.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">PLC Siemens</span>
+              <span class="job-skill">TIA Portal</span>
+              <span class="job-skill">Ladder</span>
+              <span class="job-skill">SCADA</span>
+              <span class="job-skill">OPC UA</span>
+              <span class="job-skill">Modbus</span>
+              <span class="job-skill">HMI</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Especialista RPA Sênior</h4>
+            <div class="job-company">Bradesco · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 12.000–17.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">UiPath</span>
+              <span class="job-skill">Automation Anywhere</span>
+              <span class="job-skill">Python</span>
+              <span class="job-skill">.NET</span>
+              <span class="job-skill">SQL Server</span>
+              <span class="job-skill">Power Automate</span>
+              <span class="job-skill">OCR</span>
+              <span class="job-skill">IA aplicada</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Engenheiro de Controle</h4>
+            <div class="job-company">Bunge · Interior SP · Presencial</div>
+            <div class="job-salary">R$ 8.000–13.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Rockwell/AB</span>
+              <span class="job-skill">PLCs</span>
+              <span class="job-skill">Servomotores</span>
+              <span class="job-skill">Inversores</span>
+              <span class="job-skill">Profinet</span>
+              <span class="job-skill">EtherCAT</span>
+              <span class="job-skill">NR-12</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:20px">💡 <strong>Piracicaba</strong> é polo nacional de AgTech — Raízen, ESALQ-USP e Agricef contratam para IoT no agronegócio. <strong>Campinas</strong> concentra a indústria 4.0 com CPQD, Sensedia, BotCity e Venturus. Conhecimento em <strong>Rust embarcado</strong> e <strong>RISC-V</strong> é o diferencial mais valorizado em 2026.</div>`,
+
       'Roadmaps': `
         <div class="info-box" style="margin-bottom:20px">Roadmaps do <strong>roadmap.sh</strong> mais relevantes para IoT, sistemas embarcados e automação.</div>
         <div class="rm-grid">
@@ -794,7 +1199,7 @@ const groups = {
     title: 'Segurança & Redes',
     desc: 'Cibersegurança, pentest, proteção de dados, redes corporativas e consultoria especializada.',
     color: 'var(--g4)', colorb: 'var(--g4b)',
-    tabs: ['Segurança','Redes','Roadmaps'],
+    tabs: ['Segurança','Redes','Vagas','Roadmaps'],
     content: {
       'Segurança': `
         <div class="demand-grid">
@@ -855,6 +1260,170 @@ const groups = {
         <div class="cost-row"><div class="cost-label">Suporte técnico mensal</div><div class="cost-val">R$ 500 – 10.000+</div></div>
         <div class="cost-row"><div class="cost-label">Segurança de redes</div><div class="cost-val">R$ 3.000 – 50.000+</div></div>`,
 
+      'Vagas': `
+        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas em Cibersegurança, Pentest e Infraestrutura de Redes com os conhecimentos exigidos em destaque.</div>
+        <h4 style="margin-bottom:14px;font-size:.95rem">Cibersegurança & Pentest</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Estágio em Cibersegurança</h4>
+            <div class="job-company">TIVIT · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 2.000/mês + benefícios</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Redes TCP/IP</span>
+              <span class="job-skill">Linux básico</span>
+              <span class="job-skill">Python básico</span>
+              <span class="job-skill">Windows AD</span>
+              <span class="job-skill">Wireshark</span>
+              <span class="job-skill">CompTIA Sec+</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Analista de SOC Júnior</h4>
+            <div class="job-company">Bradesco · São Paulo · 24x7</div>
+            <div class="job-salary">R$ 4.500–6.000/mês + adicionais</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">SIEM</span>
+              <span class="job-skill">Splunk</span>
+              <span class="job-skill">Wazuh</span>
+              <span class="job-skill">EDR/XDR</span>
+              <span class="job-skill">Análise de logs</span>
+              <span class="job-skill">MITRE ATT&CK</span>
+              <span class="job-skill">Inglês intermediário</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Pentester Pleno</h4>
+            <div class="job-company">Tempest Security · Remoto</div>
+            <div class="job-salary">R$ 9.000–13.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Kali Linux</span>
+              <span class="job-skill">Metasploit</span>
+              <span class="job-skill">Burp Suite</span>
+              <span class="job-skill">OWASP Top 10</span>
+              <span class="job-skill">Nmap</span>
+              <span class="job-skill">Python</span>
+              <span class="job-skill">OSCP</span>
+              <span class="job-skill">Active Directory</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Engenheiro de Segurança Sênior</h4>
+            <div class="job-company">Itaú · São Paulo · PJ</div>
+            <div class="job-salary">R$ 15.000–22.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Zero Trust</span>
+              <span class="job-skill">IAM</span>
+              <span class="job-skill">Cloud Security</span>
+              <span class="job-skill">DevSecOps</span>
+              <span class="job-skill">SAST/DAST</span>
+              <span class="job-skill">Threat Modeling</span>
+              <span class="job-skill">LGPD</span>
+              <span class="job-skill">ISO 27001</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Cloud Security Specialist</h4>
+            <div class="job-company">Itaú · 100% Remoto</div>
+            <div class="job-salary">R$ 16.000–22.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">AWS Security</span>
+              <span class="job-skill">Azure Security</span>
+              <span class="job-skill">GuardDuty</span>
+              <span class="job-skill">CSPM</span>
+              <span class="job-skill">CWPP</span>
+              <span class="job-skill">Terraform</span>
+              <span class="job-skill">CIS Benchmarks</span>
+              <span class="job-skill">CCSP</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Analista de Malware</h4>
+            <div class="job-company">Tempest · Recife/Remoto</div>
+            <div class="job-salary">R$ 10.000–15.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Reverse Engineering</span>
+              <span class="job-skill">IDA Pro / Ghidra</span>
+              <span class="job-skill">Assembly x86/x64</span>
+              <span class="job-skill">YARA</span>
+              <span class="job-skill">Sandbox</span>
+              <span class="job-skill">PE Analysis</span>
+              <span class="job-skill">C/C++</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:14px;font-size:.95rem">Infraestrutura & Redes</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Estágio em Redes</h4>
+            <div class="job-company">Algar Telecom · Valinhos · Presencial</div>
+            <div class="job-salary">R$ 1.800/mês + VR + VT</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Modelo OSI</span>
+              <span class="job-skill">TCP/IP</span>
+              <span class="job-skill">VLANs</span>
+              <span class="job-skill">Roteamento</span>
+              <span class="job-skill">Cisco básico</span>
+              <span class="job-skill">CCNA (estudando)</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Administrador de Redes Pleno</h4>
+            <div class="job-company">Banco Safra · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 7.500–11.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Cisco IOS</span>
+              <span class="job-skill">BGP/OSPF</span>
+              <span class="job-skill">VLANs/STP</span>
+              <span class="job-skill">Fortinet</span>
+              <span class="job-skill">Palo Alto</span>
+              <span class="job-skill">Zabbix</span>
+              <span class="job-skill">CCNP</span>
+              <span class="job-skill">VPN IPSec</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Engenheiro de Redes Sênior</h4>
+            <div class="job-company">Vivo / Telefônica · São Paulo</div>
+            <div class="job-salary">R$ 12.000–18.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">SD-WAN</span>
+              <span class="job-skill">MPLS</span>
+              <span class="job-skill">BGP avançado</span>
+              <span class="job-skill">IPv6</span>
+              <span class="job-skill">Cisco ACI</span>
+              <span class="job-skill">Python (automação)</span>
+              <span class="job-skill">Ansible</span>
+              <span class="job-skill">Wireshark</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Arquiteto de Redes</h4>
+            <div class="job-company">Stefanini · 100% Remoto</div>
+            <div class="job-salary">R$ 18.000–25.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Multi-vendor</span>
+              <span class="job-skill">SDN</span>
+              <span class="job-skill">5G</span>
+              <span class="job-skill">Network as Code</span>
+              <span class="job-skill">Cloud Networking</span>
+              <span class="job-skill">CCIE/CCDE</span>
+              <span class="job-skill">Inglês fluente</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:20px">💡 Brasil enfrenta déficit de <strong>750 mil profissionais</strong> em cibersegurança. Certificações como <strong>OSCP</strong>, <strong>CISSP</strong>, <strong>CCNA/CCNP</strong> aumentam salários em 30–50%. Conhecimento em <strong>AI Red Teaming</strong> é a nova fronteira de 2026.</div>`,
+
       'Roadmaps': `
         <div class="info-box" style="margin-bottom:20px">Roadmaps do <strong>roadmap.sh</strong> para cibersegurança, redes e confiabilidade de sistemas.</div>
         <h4 style="margin-bottom:12px;font-size:.95rem">Segurança</h4>
@@ -881,7 +1450,7 @@ const groups = {
     title: 'Games & Web 3.0 / Blockchain',
     desc: 'Desenvolvimento de jogos com Unity e Unreal Engine; contratos inteligentes, DeFi e o ecossistema Web3.',
     color: 'var(--g5)', colorb: 'var(--g5b)',
-    tabs: ['Games','Web3 / Blockchain','Freelance & Plataformas','Roadmaps'],
+    tabs: ['Games','Web3 / Blockchain','Vagas','Freelance & Plataformas','Roadmaps'],
     content: {
       'Games': `
         <div class="demand-grid">
@@ -929,6 +1498,195 @@ const groups = {
         <div class="cost-row"><div class="cost-label">Projeto pequeno</div><div class="cost-val">R$ 41.000 – 125.500 <span>Token ERC-20, NFT collection, DAO simples</span></div></div>
         <div class="cost-row"><div class="cost-label">Projeto médio</div><div class="cost-val">R$ 290.000 – 1.250.000 <span>DeFi, marketplace NFT, multi-chain</span></div></div>
         <div class="cost-row"><div class="cost-label">Projeto grande</div><div class="cost-val">R$ 5,3M – 44M+ <span>DEX, Layer 1, plataforma institucional</span></div></div>`,
+
+      'Vagas': `
+        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas em Games, Web3 e Blockchain com os conhecimentos exigidos em destaque.</div>
+        <h4 style="margin-bottom:14px;font-size:.95rem">Desenvolvimento de Games</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Estágio em Game Dev</h4>
+            <div class="job-company">Wildlife Studios · São Paulo · Híbrido</div>
+            <div class="job-salary">R$ 1.800–2.500/mês + benefícios</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Unity</span>
+              <span class="job-skill">C# básico</span>
+              <span class="job-skill">OOP</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">Math/Vetores</span>
+              <span class="job-skill">Portfólio (itch.io)</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Unity Developer Júnior</h4>
+            <div class="job-company">Wildlife Studios · 100% Remoto</div>
+            <div class="job-salary">R$ 4.500–6.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Unity 2022+</span>
+              <span class="job-skill">C#</span>
+              <span class="job-skill">URP</span>
+              <span class="job-skill">DOTween</span>
+              <span class="job-skill">Mobile Optimization</span>
+              <span class="job-skill">Firebase</span>
+              <span class="job-skill">Inglês intermediário</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Game Programmer Pleno</h4>
+            <div class="job-company">Aquiris · Porto Alegre/Remoto</div>
+            <div class="job-salary">R$ 7.500–11.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Unreal Engine 5</span>
+              <span class="job-skill">C++</span>
+              <span class="job-skill">Blueprints</span>
+              <span class="job-skill">Multiplayer/Replication</span>
+              <span class="job-skill">Perforce</span>
+              <span class="job-skill">Profiling</span>
+              <span class="job-skill">Shader básico</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Senior Unity Developer</h4>
+            <div class="job-company">Electric Monkeys · Remoto</div>
+            <div class="job-salary">R$ 12.000–18.000/mês (PJ)</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Unity DOTS/ECS</span>
+              <span class="job-skill">C# avançado</span>
+              <span class="job-skill">Addressables</span>
+              <span class="job-skill">Photon/Mirror</span>
+              <span class="job-skill">Shader HLSL</span>
+              <span class="job-skill">Native Plugins</span>
+              <span class="job-skill">Inglês avançado</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Engine Programmer / Graphics</h4>
+            <div class="job-company">Amber Studio · Remoto</div>
+            <div class="job-salary">$5k–$9k USD/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">C++ avançado</span>
+              <span class="job-skill">DirectX/Vulkan</span>
+              <span class="job-skill">HLSL/GLSL</span>
+              <span class="job-skill">Rendering Pipeline</span>
+              <span class="job-skill">Linear Algebra</span>
+              <span class="job-skill">SIMD</span>
+              <span class="job-skill">Inglês fluente</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Technical Artist</h4>
+            <div class="job-company">Oktagon Games · Remoto</div>
+            <div class="job-salary">R$ 8.000–14.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Blender/Maya</span>
+              <span class="job-skill">Shader Graph</span>
+              <span class="job-skill">Substance Painter</span>
+              <span class="job-skill">Python (scripts)</span>
+              <span class="job-skill">PBR Workflow</span>
+              <span class="job-skill">Houdini</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:14px;font-size:.95rem">Web3 & Blockchain</h4>
+        <div class="jobs-grid" style="margin-bottom:28px">
+          <div class="job-card">
+            <h4>Estágio em Web3</h4>
+            <div class="job-company">Parfin · 100% Remoto</div>
+            <div class="job-salary">R$ 2.500–3.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">JavaScript/TS</span>
+              <span class="job-skill">React</span>
+              <span class="job-skill">Web3.js</span>
+              <span class="job-skill">Solidity básico</span>
+              <span class="job-skill">Git</span>
+              <span class="job-skill">EVM (conceitos)</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Smart Contract Dev Júnior</h4>
+            <div class="job-company">Mercado Bitcoin · 100% Remoto</div>
+            <div class="job-salary">R$ 6.500–9.500/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Solidity</span>
+              <span class="job-skill">Hardhat</span>
+              <span class="job-skill">ethers.js</span>
+              <span class="job-skill">OpenZeppelin</span>
+              <span class="job-skill">ERC-20/721/1155</span>
+              <span class="job-skill">EVM</span>
+              <span class="job-skill">Testes unitários</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Blockchain Engineer Pleno</h4>
+            <div class="job-company">Foxbit · 100% Remoto</div>
+            <div class="job-salary">R$ 11.000–16.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Solidity avançado</span>
+              <span class="job-skill">Foundry</span>
+              <span class="job-skill">Slither/Mythril</span>
+              <span class="job-skill">DeFi protocols</span>
+              <span class="job-skill">Chainlink</span>
+              <span class="job-skill">The Graph</span>
+              <span class="job-skill">Node.js</span>
+              <span class="job-skill">IPFS</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Senior Solidity Engineer</h4>
+            <div class="job-company">Liqi · Remoto Global</div>
+            <div class="job-salary">$8k–$15k USD/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Solidity expert</span>
+              <span class="job-skill">Yul/Assembly</span>
+              <span class="job-skill">Security audits</span>
+              <span class="job-skill">Gas optimization</span>
+              <span class="job-skill">Tokenomics</span>
+              <span class="job-skill">Layer 2 (Arbitrum, Optimism)</span>
+              <span class="job-skill">Inglês fluente</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Rust / Solana Developer</h4>
+            <div class="job-company">Web3.career · Remoto Global</div>
+            <div class="job-salary">$6k–$12k USD/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">Rust</span>
+              <span class="job-skill">Anchor Framework</span>
+              <span class="job-skill">Solana Program Library</span>
+              <span class="job-skill">SPL Tokens</span>
+              <span class="job-skill">CPI</span>
+              <span class="job-skill">PDAs</span>
+              <span class="job-skill">Inglês avançado</span>
+            </div>
+          </div>
+          <div class="job-card">
+            <h4>Frontend Web3 Pleno</h4>
+            <div class="job-company">Vortx · 100% Remoto</div>
+            <div class="job-salary">R$ 9.000–13.000/mês</div>
+            <div class="job-skills-label">Conhecimentos exigidos</div>
+            <div class="job-skills">
+              <span class="job-skill">React/Next.js</span>
+              <span class="job-skill">TypeScript</span>
+              <span class="job-skill">wagmi</span>
+              <span class="job-skill">viem</span>
+              <span class="job-skill">RainbowKit</span>
+              <span class="job-skill">WalletConnect</span>
+              <span class="job-skill">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:20px">💡 Web3 paga em <strong>USD ou tokens</strong> e tem salários ~32% maiores que Web2 equivalente. Para Games, <strong>portfólio público no itch.io ou GitHub</strong> é mandatório. Hackathons (ETHGlobal, Chainlink Hackathon) são vitais para entrar em Web3.</div>`,
 
       'Freelance & Plataformas': `
         <div class="info-box" style="margin-bottom:28px">Principais plataformas para encontrar trabalho ou contratar nas áreas de Games e Web3.</div>
