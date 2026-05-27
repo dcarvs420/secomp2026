@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Carreira — Engenharia da Computação | SECOMP 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#1c1f2e; --bg2:#232738; --card:#252a3a; --card2:#2a2f42;
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.15);
+  --text:#b0b4cc; --dim:#686c86; --white:#e8eaf6;
+  --g1:#38bdf8; --g1b:rgba(56,189,248,0.13);
+  --g2:#c084fc; --g2b:rgba(192,132,252,0.13);
+  --g3:#4ade80; --g3b:rgba(74,222,128,0.13);
+  --g4:#fb923c; --g4b:rgba(251,146,60,0.13);
+  --g5:#fcd34d; --g5b:rgba(252,211,77,0.13);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;color:var(--white)}
+.mono{font-family:'DM Mono',monospace}
+a{text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(28,31,46,0.90);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);cursor:pointer}
+.nav-logo span{color:var(--g1)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--dim);font-size:13px;letter-spacing:.04em;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--white)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.09) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%)}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--g1b);border:1px solid rgba(56,189,248,.30);color:var(--g1);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:28px;animation:fadeUp .7s ease both}
+.badge::before{content:'●';animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeUp .7s .1s ease both}
+.hero h1 em{font-style:normal;color:var(--g1)}
+.hero-sub{max-width:520px;color:var(--dim);font-size:17px;margin-bottom:48px;animation:fadeUp .7s .2s ease both}
+.hero-stats{display:flex;gap:48px;flex-wrap:wrap;justify-content:center;margin-bottom:60px;animation:fadeUp .7s .3s ease both}
+.stat{text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white)}
+.stat-label{font-size:11px;color:var(--dim);letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--g1);color:#0a0c16;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;padding:14px 32px;border-radius:12px;cursor:pointer;transition:opacity .2s,transform .2s;animation:fadeUp .7s .4s ease both}
+.hero-cta:hover{opacity:.88;transform:translateY(-2px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION */
+.section{padding:80px 0}
+.container{max-width:1180px;margin:0 auto;padding:0 32px}
+.sec-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.sec-title{font-size:2rem;font-weight:800;margin-bottom:12px}
+.sec-desc{color:var(--dim);max-width:520px;margin-bottom:48px;font-size:15px}
+
+/* GROUPS HUB */
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+.g-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 32px;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+.g-card::after{content:'→';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:18px;opacity:0;transition:opacity .2s,right .2s;color:var(--c,var(--g1))}
+.g-card:hover::after{opacity:1;right:20px}
+.g-card:hover{transform:translateY(-3px);border-color:var(--c,var(--g1));box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.g-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c,var(--g1));margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.g-tag::after{content:'';flex:1;height:1px;background:var(--c,var(--g1));opacity:.2;max-width:60px}
+.g-card h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.g-card p{color:var(--dim);font-size:13px;line-height:1.55;margin-bottom:16px}
+.g-areas{display:flex;flex-wrap:wrap;gap:6px}
+.g-area{font-size:11px;font-family:'DM Mono',monospace;padding:4px 10px;border-radius:6px;background:var(--cb,rgba(0,194,255,.1));color:var(--c,var(--g1));border:1px solid rgba(255,255,255,.06)}
+[data-g="1"]{--c:var(--g1);--cb:var(--g1b)}
+[data-g="2"]{--c:var(--g2);--cb:var(--g2b)}
+[data-g="3"]{--c:var(--g3);--cb:var(--g3b)}
+[data-g="4"]{--c:var(--g4);--cb:var(--g4b)}
+[data-g="5"]{--c:var(--g5);--cb:var(--g5b)}
+
+/* MODAL / DETAIL */
+.overlay{position:fixed;inset:0;background:rgba(10,12,22,.60);backdrop-filter:blur(12px);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:flex-start;justify-content:center;padding:80px 16px 24px;overflow-y:auto}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:24px;box-shadow:0 24px 80px rgba(0,0,0,.40);width:100%;max-width:900px;padding:0;overflow:hidden;transform:translateY(32px);transition:transform .35s;position:relative;margin:auto}
+.overlay.open .modal{transform:translateY(0)}
+.modal-header{padding:36px 40px 28px;border-bottom:1px solid var(--border);position:relative}
+.modal-close{position:absolute;top:28px;right:32px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--dim);font-size:18px;transition:color .2s,border-color .2s}
+.modal-close:hover{color:var(--white);border-color:var(--border2)}
+.modal-group-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--c,var(--g1));margin-bottom:10px}
+.modal-title{font-size:1.8rem;font-weight:800;margin-bottom:8px}
+.modal-desc{color:var(--dim);font-size:14px;max-width:580px}
+.modal-body{padding:32px 40px 40px}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
+.tab{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer;color:var(--dim);background:transparent;transition:all .2s}
+.tab:hover{color:var(--white);border-color:var(--border2)}
+.tab.active{background:var(--cb,var(--g1b));color:var(--c,var(--g1));border-color:var(--c,var(--g1))}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* SALARY TABLE */
+.salary-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+.salary-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 16px;border-bottom:1px solid var(--border)}
+.salary-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text)}
+.salary-table tr:last-child td{border-bottom:none}
+.salary-table tr:hover td{background:rgba(255,255,255,.03)}
+.salary-val{font-family:'DM Mono',monospace;color:var(--white);font-size:13px}
+.salary-bar-wrap{display:flex;align-items:center;gap:10px}
+.salary-bar{height:4px;border-radius:2px;background:var(--c,var(--g1));opacity:.6;min-width:20px;transition:width .6s ease}
+
+/* DEMAND CARDS */
+.demand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:28px}
+.d-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.d-card-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.d-card-val{font-family:'Syne',monospace;font-size:1.4rem;font-weight:700;color:var(--white)}
+.d-card-sub{font-size:12px;color:var(--dim);margin-top:4px}
+
+/* TECH PILLS */
+.techs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tech{font-family:'DM Mono',monospace;font-size:11px;padding:5px 12px;border-radius:6px;background:var(--cb,var(--g1b));color:var(--c,var(--g1));border:1px solid rgba(255,255,255,.06)}
+
+/* INFO BOX */
+.info-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--c,var(--g1));border-radius:12px;padding:18px 22px;margin-bottom:20px;font-size:14px;color:var(--text)}
+.info-box strong{color:var(--white)}
+
+/* PLACEHOLDER */
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 32px;text-align:center;gap:16px}
+.placeholder-icon{font-size:48px;opacity:.3}
+.placeholder h3{color:var(--white);font-size:1.4rem;opacity:.6}
+.placeholder p{color:var(--dim);font-size:14px;max-width:360px}
+
+/* FREELANCE SECTION */
+.freelance-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.f-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.f-card h4{font-size:14px;margin-bottom:6px;color:var(--white)}
+.f-card p{font-size:13px;color:var(--dim)}
+.f-price{font-family:'DM Mono',monospace;color:var(--c,var(--g1));font-size:13px;margin-top:8px}
+
+/* COST TABLE */
+.cost-row{display:flex;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
+.cost-row:last-child{border-bottom:none}
+.cost-label{min-width:140px;font-size:13px;color:var(--dim);font-family:'DM Mono',monospace}
+.cost-val{font-size:13px;color:var(--white)}
+.cost-val span{display:block;font-size:12px;color:var(--dim);margin-top:2px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--dim);font-size:12px;font-family:'DM Mono',monospace;letter-spacing:.06em}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  .hero h1{font-size:2.4rem}
+  .hero-stats{gap:24px}
+  .container{padding:0 18px}
+  .modal{border-radius:16px}
+  .modal-header,.modal-body{padding:24px 20px}
+  .groups-grid{grid-template-columns:1fr}
+  .demand-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showHome()">SECOMP <span>2026</span></div>
+  <div class="nav-links">
+    <a onclick="scrollTo('.section-groups')">Grupos</a>
+    <a href="https://pesquisa.codigofonte.com.br/2025" target="_blank">Pesquisa Salarial</a>
+    <a href="https://roadmap.sh" target="_blank">Roadmap.sh</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="badge">IFSP Piracicaba · Engenharia da Computação</div>
+  <h1>Mapa de <em>Carreira</em><br>em Computação</h1>
+  <p class="hero-sub">Panorama completo do mercado de tecnologia: salários, demandas, custos de projetos e tecnologias em destaque — pesquisa dos alunos do 6º semestre.</p>
+  <div class="hero-cta" onclick="document.querySelector('.section-groups').scrollIntoView({behavior:'smooth'})">Explorar Áreas ↓</div>
+</div>
+
+<!-- GROUPS SECTION -->
+<section class="section section-groups">
+  <div class="container">
+    <div class="sec-label">Pesquisa de Carreira</div>
+    <h2 class="sec-title">Explore as Áreas</h2>
+    <p class="sec-desc">Clique em um grupo para ver salários, demanda por região, tecnologias e custos de projetos detalhados.</p>
+    <div class="groups-grid">
+
+      <div class="g-card" data-g="1" onclick="openModal(1)">
+        <div class="g-tag">Grupo 01</div>
+        <h3>Plataformas de Desenvolvimento</h3>
+        <p>Web, Mobile, Desktop e soluções Multiplataforma. O universo do desenvolvimento de software aplicado.</p>
+        <div class="g-areas">
+          <span class="g-area">Web</span>
+          <span class="g-area">Mobile</span>
+          <span class="g-area">Desktop</span>
+          <span class="g-area">Multi-plataforma</span>
+        </div>
+      </div>
+
+      <div class="g-card" data-g="2" onclick="openModal(2)">
+        <div class="g-tag">Grupo 02</div>
+        <h3>Inteligência Artificial & Cloud</h3>
+        <p>IA generativa, Machine Learning e DevOps/Cloud. As tecnologias mais quentes do mercado atual.</p>
+        <div class="g-areas">
+          <span class="g-area">IA / ML</span>
+          <span class="g-area">DevOps</span>
+          <span class="g-area">Cloud</span>
+          <span class="g-area">Azure / AWS</span>
+        </div>
+      </div>
+
+      <div class="g-card" data-g="3" onclick="openModal(3)">
+        <div class="g-tag">Grupo 03</div>
+        <h3>IoT & Hardware / Automação</h3>
+        <p>Internet das Coisas, sistemas embarcados, automação industrial e circuitos eletrônicos.</p>
+        <div class="g-areas">
+          <span class="g-area">IoT</span>
+          <span class="g-area">Embarcados</span>
+          <span class="g-area">Automação</span>
+          <span class="g-area">RISC-V / ARM</span>
+        </div>
+      </div>
+
+      <div class="g-card" data-g="4" onclick="openModal(4)">
+        <div class="g-tag">Grupo 04</div>
+        <h3>Segurança & Redes</h3>
+        <p>Cibersegurança, pentest, proteção de dados e infraestrutura de redes corporativas.</p>
+        <div class="g-areas">
+          <span class="g-area">Cibersegurança</span>
+          <span class="g-area">Redes</span>
+          <span class="g-area">Pentest</span>
+          <span class="g-area">LGPD</span>
+        </div>
+      </div>
+
+      <div class="g-card" data-g="5" onclick="openModal(5)">
+        <div class="g-tag">Grupo 05</div>
+        <h3>Games & Web 3.0 / Blockchain</h3>
+        <p>Desenvolvimento de jogos com Unity/Unreal, contratos inteligentes, DeFi e o ecossistema Web3.</p>
+        <div class="g-areas">
+          <span class="g-area">Games</span>
+          <span class="g-area">Blockchain</span>
+          <span class="g-area">Web3</span>
+          <span class="g-area">Smart Contracts</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    IFSP Piracicaba · Bacharelado em Engenharia da Computação · SECOMP 2026 · Linguagem de Programação 2
+  </div>
+</footer>
+
+<!-- MODAL OVERLAY -->
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-group-label" id="modal-group-label"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-close" onclick="closeModal()">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="tabs" id="modal-tabs"></div>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+const groups = {
+  1: {
+    label: 'Grupo 01',
+    title: 'Plataformas de Desenvolvimento',
+    desc: 'Web, Mobile, Desktop e Multiplataforma — panorama completo das plataformas de desenvolvimento de software.',
+    color: 'var(--g1)', colorb: 'var(--g1b)',
+    tabs: ['Web','Mobile','Desktop','Multiplataforma'],
+    content: {
+      'Mobile': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">700k+</div><div class="d-card-sub">vagas TI em aberto (2025)</div></div>
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">10–15%</div><div class="d-card-sub">abaixo de SP</div></div>
+          <div class="d-card"><div class="d-card-label">EUA Sênior</div><div class="d-card-val">$130k–200k</div><div class="d-card-sub">por ano</div></div>
+          <div class="d-card"><div class="d-card-label">Freelance Intl.</div><div class="d-card-val">$55–185/h</div><div class="d-card-sub">Upwork/Toptal</div></div>
+        </div>
+        <div class="info-box">Maiores contratantes: <strong>iFood, Nubank, PicPay, Mercado Livre, C6 Bank, Itaú, 99/DiDi, Rappi, Uber</strong>. Dev iOS nativo recebe prêmio de 10–15% por escassez de talentos. PJ fatura 30–40% a mais que CLT.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial por Região (CLT/mês)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Campinas</th><th>São Paulo</th><th>Brasil</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.500–2.500</td><td class="salary-val">R$ 1.800–3.000</td><td class="salary-val">R$ 1.500–2.800</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 4.700–6.200</td><td class="salary-val">R$ 5.500–7.500</td><td class="salary-val">R$ 4.500–6.900</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 7.500–10.500</td><td class="salary-val">R$ 9.000–12.500</td><td class="salary-val">R$ 7.300–11.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 10.500–16.000</td><td class="salary-val">R$ 12.000–21.800</td><td class="salary-val">R$ 9.500–18.000</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Tecnologias</h4>
+        <div class="techs"><span class="tech">Swift / SwiftUI</span><span class="tech">Kotlin</span><span class="tech">Jetpack Compose</span><span class="tech">Flutter (Dart)</span><span class="tech">React Native</span><span class="tech">Firebase</span><span class="tech">KMP</span><span class="tech">Ionic/Capacitor</span><span class="tech">.NET MAUI</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projeto Mobile</h4>
+        <div class="cost-row"><div class="cost-label">Pequeno (2–3 meses)</div><div class="cost-val">R$ 25.000 – 60.000 <span>MVP, até 5 telas, 1 plataforma</span></div></div>
+        <div class="cost-row"><div class="cost-label">Médio (3–6 meses)</div><div class="cost-val">R$ 80.000 – 220.000 <span>iOS + Android, pagamentos, push, painel admin</span></div></div>
+        <div class="cost-row"><div class="cost-label">Grande (6–18+ meses)</div><div class="cost-val">R$ 300.000 – 2.000.000+ <span>Marketplace, fintech, app saúde com compliance</span></div></div>`,
+
+      'Web': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">700k+</div><div class="d-card-sub">vagas TI abertas</div></div>
+          <div class="d-card"><div class="d-card-label">SP Fullstack Sênior</div><div class="d-card-val">até R$20.950</div><div class="d-card-sub">75º percentil (Robert Half)</div></div>
+          <div class="d-card"><div class="d-card-label">EUA Sênior</div><div class="d-card-val">$120k–200k+</div><div class="d-card-sub">por ano</div></div>
+          <div class="d-card"><div class="d-card-label">Freelance</div><div class="d-card-val">$55–185/h</div><div class="d-card-sub">internacional</div></div>
+        </div>
+        <div class="info-box">Maiores contratantes: <strong>Nubank, Creditas, QuintoAndar, VTEX, Hotmart, B2W, Magazine Luiza, Itaú, Totvs, Accenture, Google, Amazon</strong>. Fintechs e e-commerce lideram as contratações.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial por Região (CLT/mês)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Campinas</th><th>São Paulo</th><th>Brasil</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.500–2.800</td><td class="salary-val">R$ 2.000–3.500</td><td class="salary-val">R$ 1.500–3.000</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 4.500–6.500</td><td class="salary-val">R$ 5.500–8.750</td><td class="salary-val">R$ 4.500–7.000</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 7.500–11.000</td><td class="salary-val">R$ 9.400–15.900</td><td class="salary-val">R$ 7.000–12.400</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 11.000–17.000</td><td class="salary-val">R$ 12.450–20.950</td><td class="salary-val">R$ 10.000–18.200</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Stack Frontend</h4>
+        <div class="techs"><span class="tech">JavaScript/TypeScript</span><span class="tech">React.js</span><span class="tech">Next.js</span><span class="tech">Vue.js</span><span class="tech">Angular</span><span class="tech">Tailwind CSS</span></div>
+        <h4 style="margin:16px 0 10px;font-size:.95rem">Stack Backend</h4>
+        <div class="techs"><span class="tech">Node.js</span><span class="tech">Python / Django / FastAPI</span><span class="tech">Java / Spring Boot</span><span class="tech">PHP / Laravel</span><span class="tech">Go</span><span class="tech">PostgreSQL</span><span class="tech">MongoDB</span><span class="tech">Redis</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projeto Web</h4>
+        <div class="cost-row"><div class="cost-label">Pequeno (1–3 meses)</div><div class="cost-val">R$ 15.000 – 50.000 <span>Landing page, site institucional, loja simples</span></div></div>
+        <div class="cost-row"><div class="cost-label">Médio (3–8 meses)</div><div class="cost-val">R$ 60.000 – 250.000 <span>SaaS, marketplace, sistema com dashboard</span></div></div>
+        <div class="cost-row"><div class="cost-label">Grande (8–24+ meses)</div><div class="cost-val">R$ 300.000 – 5.000.000+ <span>ERP, fintech, grande e-commerce</span></div></div>`,
+
+      'Desktop': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Campinas (C++/Qt)</div><div class="d-card-val">R$13k–18k</div><div class="d-card-sub">Sênior PJ</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">.NET/C#</div><div class="d-card-sub">mais demandado</div></div>
+          <div class="d-card"><div class="d-card-label">EUA Sênior</div><div class="d-card-val">$110k–170k</div><div class="d-card-sub">por ano</div></div>
+          <div class="d-card"><div class="d-card-label">Setores</div><div class="d-card-val">Industrial</div><div class="d-card-sub">médico, bancário, governo</div></div>
+        </div>
+        <div class="info-box">Maiores contratantes: <strong>Totvs, Senior Sistemas, Linx, Stefanini, SAP Brasil, Oracle</strong>. Setor industrial, hospitalar e financeiro concentram a demanda. Legado .NET e Java ainda dominam o mercado.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial por Região (CLT/mês)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Campinas</th><th>São Paulo</th><th>Brasil</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.200–2.200</td><td class="salary-val">R$ 1.500–2.800</td><td class="salary-val">R$ 1.200–2.500</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 3.800–5.500</td><td class="salary-val">R$ 4.500–6.500</td><td class="salary-val">R$ 3.500–5.600</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 6.000–9.500</td><td class="salary-val">R$ 7.000–11.500</td><td class="salary-val">R$ 5.500–9.500</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 9.500–14.500</td><td class="salary-val">R$ 10.679–17.000</td><td class="salary-val">R$ 8.500–15.000</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Tecnologias</h4>
+        <div class="techs"><span class="tech">C# / WPF / WinForms</span><span class="tech">.NET MAUI</span><span class="tech">Java / JavaFX</span><span class="tech">C++ / Qt</span><span class="tech">Python PyQt</span><span class="tech">Electron (JS)</span><span class="tech">Tauri (Rust)</span><span class="tech">Swift / SwiftUI (macOS)</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projeto Desktop</h4>
+        <div class="cost-row"><div class="cost-label">Pequeno (1–2 meses)</div><div class="cost-val">R$ 10.000 – 40.000 <span>Ferramenta interna, utilitário simples</span></div></div>
+        <div class="cost-row"><div class="cost-label">Médio (3–6 meses)</div><div class="cost-val">R$ 50.000 – 180.000 <span>ERP leve, PDV, app médico/industrial</span></div></div>
+        <div class="cost-row"><div class="cost-label">Grande (6–24+ meses)</div><div class="cost-val">R$ 200.000 – 3.000.000+ <span>ERP completo, sistema bancário, CAD/CAM</span></div></div>`,
+
+      'Multiplataforma': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">React Native</div><div class="d-card-val">6.400+</div><div class="d-card-sub">vagas no LinkedIn US</div></div>
+          <div class="d-card"><div class="d-card-label">Flutter</div><div class="d-card-val">1M+</div><div class="d-card-sub">apps na Play Store</div></div>
+          <div class="d-card"><div class="d-card-label">EUA Sênior</div><div class="d-card-val">$130k–210k</div><div class="d-card-sub">por ano</div></div>
+          <div class="d-card"><div class="d-card-label">Upwork 2025</div><div class="d-card-val">64%</div><div class="d-card-sub">contratos mobile cross-platform</div></div>
+        </div>
+        <div class="info-box">Flutter e React Native lideram. Tendência forte em startups que buscam time único. Electron domina apps desktop cross-platform (VSCode, Slack, Discord). KMP ganha espaço para compartilhar lógica de negócio.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial por Região (CLT/mês)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Campinas</th><th>São Paulo</th><th>Brasil</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.500–2.600</td><td class="salary-val">R$ 1.800–3.200</td><td class="salary-val">R$ 1.500–2.800</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 4.800–6.500</td><td class="salary-val">R$ 5.500–8.000</td><td class="salary-val">R$ 4.500–7.000</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 7.500–11.500</td><td class="salary-val">R$ 9.000–14.500</td><td class="salary-val">R$ 7.500–12.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 11.000–17.000</td><td class="salary-val">R$ 13.000–21.000</td><td class="salary-val">R$ 10.000–18.500</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Tecnologias</h4>
+        <div class="techs"><span class="tech">Flutter (Dart)</span><span class="tech">React Native (JS/TS)</span><span class="tech">.NET MAUI (C#)</span><span class="tech">Kotlin Multiplatform</span><span class="tech">Electron</span><span class="tech">Tauri (Rust)</span><span class="tech">PWA</span><span class="tech">Ionic/Capacitor</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projeto Multiplataforma</h4>
+        <div class="cost-row"><div class="cost-label">Pequeno (2–3 meses)</div><div class="cost-val">R$ 30.000 – 70.000 <span>MVP Flutter/RN iOS + Android, até 8 telas</span></div></div>
+        <div class="cost-row"><div class="cost-label">Médio (3–7 meses)</div><div class="cost-val">R$ 80.000 – 280.000 <span>App + Web + Desktop, pagamentos, offline-first</span></div></div>
+        <div class="cost-row"><div class="cost-label">Grande (8–20+ meses)</div><div class="cost-val">R$ 350.000 – 3.000.000+ <span>Plataforma iOS/Android/Web/Desktop unificados</span></div></div>`,
+
+      'Vagas & Freelance': `
+        <div class="info-box" style="margin-bottom:24px">Exemplos reais de vagas coletadas em 2025–2026 e as principais plataformas para trabalho freelancer.</div>
+        <h4 style="margin-bottom:14px;font-size:.95rem">Exemplos de Vagas Reais</h4>
+        <div class="freelance-grid" style="margin-bottom:28px">
+          <div class="f-card">
+            <h4>Estágio Mobile — iFood (SP)</h4>
+            <p>React Native · JS básico · Git · 30h/sem · Híbrido</p>
+            <div class="f-price">R$ 2.200/mês + benefícios</div>
+          </div>
+          <div class="f-card">
+            <h4>Júnior Android — Nubank (Remoto)</h4>
+            <p>Kotlin · Jetpack Compose · MVVM · Inglês intermediário</p>
+            <div class="f-price">R$ 6.200–7.500/mês + stock options</div>
+          </div>
+          <div class="f-card">
+            <h4>Pleno Flutter — PicPay (Híbrido SP)</h4>
+            <p>Flutter/Dart · BLoC/Riverpod · Clean Architecture · Fastlane</p>
+            <div class="f-price">R$ 10.000–13.500/mês + PLR</div>
+          </div>
+          <div class="f-card">
+            <h4>Sênior iOS — Mercado Livre (Remoto)</h4>
+            <p>Swift · SwiftUI + UIKit · VIPER · Instruments · Inglês avançado</p>
+            <div class="f-price">R$ 16.000–22.000/mês + stock options</div>
+          </div>
+          <div class="f-card">
+            <h4>Júnior Backend — QuintoAndar (Remoto)</h4>
+            <p>Node.js/TypeScript · PostgreSQL · Docker · Jest</p>
+            <div class="f-price">R$ 6.500–8.000/mês</div>
+          </div>
+          <div class="f-card">
+            <h4>Sênior Java — Itaú (SP)</h4>
+            <p>Spring Boot · Kafka · AWS · Microsserviços · OAuth2</p>
+            <div class="f-price">R$ 18.000–25.000/mês (PJ)</div>
+          </div>
+          <div class="f-card">
+            <h4>Estágio Frontend — RD Station (Remoto)</h4>
+            <p>HTML/CSS/JS · React básico · Git · Inglês para leitura</p>
+            <div class="f-price">R$ 2.500/mês + VR + VT</div>
+          </div>
+          <div class="f-card">
+            <h4>Sênior C++/Qt — Industrial (Campinas)</h4>
+            <p>C++17/20 · Qt · Multithreading · Modbus/OPC-UA</p>
+            <div class="f-price">R$ 13.000–18.000/mês (PJ)</div>
+          </div>
+        </div>
+        <h4 style="margin-bottom:14px;font-size:.95rem">Plataformas Freelance</h4>
+        <div class="freelance-grid">
+          <div class="f-card">
+            <h4>Workana</h4>
+            <p>Maior da América Latina. +500k profissionais BR. Paga em reais. Taxa 10–15%. Match em 48–72h.</p>
+            <div class="f-price">Ideal para começar no freelance</div>
+          </div>
+          <div class="f-card">
+            <h4>Upwork</h4>
+            <p>Maior global. +$4bi/ano. Paga em USD. Taxa 20%→10%→5% por cliente. Inglês obrigatório.</p>
+            <div class="f-price">$55–185/h · acesso a clientes premium</div>
+          </div>
+          <div class="f-card">
+            <h4>99Freelas</h4>
+            <p>Plataforma brasileira. +700k cadastrados. Sistema de score. Boa para portfólio inicial.</p>
+            <div class="f-price">Menor barreira de entrada</div>
+          </div>
+          <div class="f-card">
+            <h4>Toptal</h4>
+            <p>Elite — top 3% dos profissionais. Seleção rigorosa em múltiplas etapas. USD.</p>
+            <div class="f-price">$185–450/h · sem taxa ao freelancer</div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:20px">💡 Inglês avançado abre uma janela de remuneração 3–5x maior que o mercado nacional. Construa um portfólio público no GitHub — é o diferencial mais citado por recrutadores.</div>`
+    }
+  },
+
+  2: {
+    label: 'Grupo 02',
+    title: 'Inteligência Artificial & DevOps / Cloud',
+    desc: 'IA Generativa, Machine Learning, DevOps e Cloud Computing — as áreas de maior crescimento e remuneração no mercado tech em 2026.',
+    color: 'var(--g2)', colorb: 'var(--g2b)',
+    tabs: ['Inteligência Artificial','DevOps / Cloud','Tecnologias & Freelance'],
+    content: {
+      'Inteligência Artificial': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">+306%</div><div class="d-card-sub">busca por profissionais IA (Gupy 2026)</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">R$23bi</div><div class="d-card-sub">Plano Brasileiro de IA 2024–2028</div></div>
+          <div class="d-card"><div class="d-card-label">Mercado Global</div><div class="d-card-val">$183,9bi</div><div class="d-card-sub">2026 → $2,67 tri até 2035</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">54%</div><div class="d-card-sub">usaram IA generativa em 2025/26</div></div>
+        </div>
+        <div class="info-box">Campinas: <strong>Venturus, CPQD, Unicamp, Samsung, Sensedia, SiDi, BairesDev</strong>. SP: Amazon investiu R$10,1bi e Microsoft R$14,7bi em data centers. Brasil forma 53k profissionais TI/ano contra demanda de 159k/ano.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — Inteligência Artificial (Brasil, 2026)</h4>
+        <table class="salary-table">
+          <tr><th>Cargo</th><th>Júnior (R$/mês)</th><th>Pleno (R$/mês)</th><th>Sênior (R$/mês)</th></tr>
+          <tr><td>Analista de Machine Learning</td><td class="salary-val">7.500–9.000</td><td class="salary-val">9.500–12.000</td><td class="salary-val">12.000–16.000</td></tr>
+          <tr><td>Arquiteto de ML</td><td class="salary-val">16.000–18.000</td><td class="salary-val">18.000–22.000</td><td class="salary-val">22.000–28.000</td></tr>
+          <tr><td>Engenheiro de IA / Deep Learning</td><td class="salary-val">8.000–10.000</td><td class="salary-val">10.000–14.000</td><td class="salary-val">14.000–25.000+</td></tr>
+          <tr><td>Cientista de Dados</td><td class="salary-val">7.500–10.000</td><td class="salary-val">11.000–15.000</td><td class="salary-val">16.000–22.000</td></tr>
+          <tr><td>Consultor de Estratégia em IA</td><td class="salary-val">—</td><td class="salary-val">15.000–20.000</td><td class="salary-val">22.000–35.000</td></tr>
+        </table>
+        <div class="info-box" style="margin-top:16px">Sêniores com domínio em LLMs e IA generativa ultrapassam <strong>R$ 25.000/mês</strong> em São Paulo. Déficit projetado de ~1 milhão de profissionais TI até 2030.</div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projetos de IA</h4>
+        <div class="cost-row"><div class="cost-label">Pequeno (10–25 telas)</div><div class="cost-val">R$ 50.000 – 180.000 <span>2–5 profissionais</span></div></div>
+        <div class="cost-row"><div class="cost-label">Médio (25–40 telas)</div><div class="cost-val">R$ 180.000 – 600.000 <span>5–10 profissionais</span></div></div>
+        <div class="cost-row"><div class="cost-label">Grande (40+ telas)</div><div class="cost-val">R$ 600.000 – 2.000.000+ <span>10+ profissionais</span></div></div>
+        <div class="cost-row"><div class="cost-label">Manutenção anual</div><div class="cost-val">15% a 20% do custo inicial</div></div>
+        <div class="cost-row"><div class="cost-label">Consultoria especializada</div><div class="cost-val">R$ 200 – 700/hora <span>Dependendo da especialização</span></div></div>`,
+
+      'DevOps / Cloud': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">70+</div><div class="d-card-sub">vagas ativas DevOps (Indeed mai/26)</div></div>
+          <div class="d-card"><div class="d-card-label">Campinas Médio</div><div class="d-card-val">R$8k–12k</div><div class="d-card-sub">engenheiro DevOps/mês</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil Médio</div><div class="d-card-val">R$9.230/mês</div><div class="d-card-sub">~R$110.755/ano (Indeed)</div></div>
+          <div class="d-card"><div class="d-card-label">EUA / Europa</div><div class="d-card-val">$110k–200k</div><div class="d-card-sub">por ano</div></div>
+        </div>
+        <div class="info-box">Campinas: <strong>Sensedia, CPQD, SiDi, Wizdaa, BairesDev</strong>. SP: TOTVS, Klabin, Bunge, Pismo, Telefônica Vivo, Ci&T. Startups e fintechs preferem AWS/GCP; grandes corporações preferem Azure e Oracle Cloud.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — DevOps (Brasil, 2026)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Faixa Mensal (R$)</th><th>Observação</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.500 – 2.000</td><td style="font-size:12px;color:var(--dim)">Programas de estágio</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 4.500 – 8.000</td><td style="font-size:12px;color:var(--dim)">Até 2 anos de exp.</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 8.000 – 14.000</td><td style="font-size:12px;color:var(--dim)">2–5 anos, maior autonomia</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 14.000 – 20.000+</td><td style="font-size:12px;color:var(--dim)">5+ anos, liderança técnica</td></tr>
+          <tr><td>Líder / Arquiteto</td><td class="salary-val">R$ 20.000 – 30.000+</td><td style="font-size:12px;color:var(--dim)">Estratégia e arquitetura</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Consultoria DevOps</h4>
+        <div class="cost-row"><div class="cost-label">Básica</div><div class="cost-val">R$ 12.000 – 35.000 <span>Diagnóstico e recomendações</span></div></div>
+        <div class="cost-row"><div class="cost-label">Intermediária</div><div class="cost-val">R$ 35.000 – 80.000 <span>Pipelines CI/CD e automação</span></div></div>
+        <div class="cost-row"><div class="cost-label">Avançada</div><div class="cost-val">R$ 80.000 – 120.000+ <span>Transformação digital multicloud</span></div></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Certificações mais valorizadas</h4>
+        <div class="techs"><span class="tech">AWS Certified DevOps Engineer</span><span class="tech">Azure DevOps Engineer Expert</span><span class="tech">GCP Professional Cloud DevOps</span><span class="tech">CKA (Kubernetes)</span></div>`,
+
+      'Tecnologias & Freelance': `
+        <div class="info-box" style="margin-bottom:24px">Stack mais exigida nas vagas de IA e DevOps/Cloud em 2026.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Linguagens — IA & DevOps</h4>
+        <div class="techs"><span class="tech">Python</span><span class="tech">JavaScript / TypeScript</span><span class="tech">Go</span><span class="tech">Java</span><span class="tech">Shell Script / Bash</span><span class="tech">Rust</span><span class="tech">SQL</span><span class="tech">YAML / HCL (Terraform)</span><span class="tech">C++</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Ferramentas IA / ML</h4>
+        <div class="techs"><span class="tech">LangChain</span><span class="tech">LlamaIndex</span><span class="tech">TensorFlow</span><span class="tech">PyTorch</span><span class="tech">Hugging Face Transformers</span><span class="tech">FastAPI</span><span class="tech">Pinecone (vetorial)</span><span class="tech">Kaggle</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Ferramentas DevOps / Cloud</h4>
+        <div class="techs"><span class="tech">Docker</span><span class="tech">Kubernetes</span><span class="tech">Terraform</span><span class="tech">Pulumi</span><span class="tech">Jenkins</span><span class="tech">GitHub Actions</span><span class="tech">GitLab CI</span><span class="tech">Ansible</span><span class="tech">Prometheus</span><span class="tech">Grafana</span><span class="tech">Datadog</span><span class="tech">AWS</span><span class="tech">Azure</span><span class="tech">GCP</span><span class="tech">Oracle Cloud</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Comparativo Salarial — Cargos TI (Brasil, 2026)</h4>
+        <table class="salary-table">
+          <tr><th>Cargo</th><th>Júnior</th><th>Pleno</th><th>Sênior</th></tr>
+          <tr><td>Engenheiro de Dados</td><td class="salary-val">R$ 8.000</td><td class="salary-val">R$ 13.000</td><td class="salary-val">R$ 20.000</td></tr>
+          <tr><td>Dev Full-Stack</td><td class="salary-val">R$ 7.500</td><td class="salary-val">R$ 12.000</td><td class="salary-val">R$ 16.500</td></tr>
+          <tr><td>Dev Mobile</td><td class="salary-val">R$ 7.000</td><td class="salary-val">R$ 12.000</td><td class="salary-val">R$ 18.500</td></tr>
+          <tr><td>Dev Front-End</td><td class="salary-val">R$ 7.000</td><td class="salary-val">R$ 12.000</td><td class="salary-val">R$ 17.500</td></tr>
+          <tr><td>Dev Back-End</td><td class="salary-val">R$ 6.500</td><td class="salary-val">R$ 10.000</td><td class="salary-val">R$ 16.000</td></tr>
+          <tr><td>Analista de Sistemas</td><td class="salary-val">R$ 6.000</td><td class="salary-val">R$ 9.500</td><td class="salary-val">R$ 13.000</td></tr>
+          <tr><td>Analista QA / Testes</td><td class="salary-val">R$ 6.000</td><td class="salary-val">R$ 8.500</td><td class="salary-val">R$ 12.000</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Plataformas Freelance</h4>
+        <div class="freelance-grid">
+          <div class="f-card"><h4>Upwork / Toptal</h4><p>Referências globais para talentos de alto nível em IA e DevOps. Pagamento em USD.</p><div class="f-price">Alta remuneração internacional</div></div>
+          <div class="f-card"><h4>Workana / 99Freelas</h4><p>Opções nacionais para projetos de escopo variado. Pagamento em reais.</p><div class="f-price">Boa entrada no freelance</div></div>
+          <div class="f-card"><h4>LinkedIn</h4><p>Networking e busca ativa de freelancers especializados em IA/Cloud.</p><div class="f-price">Essencial para seniores</div></div>
+          <div class="f-card"><h4>GitHub / Hugging Face</h4><p>Comunidades técnicas para encontrar especialistas em ML/IA. Portfólio público valorizado.</p><div class="f-price">Kaggle + GitHub = diferencial</div></div>
+        </div>`
+    }
+  },
+
+  3: {
+    label: 'Grupo 03',
+    title: 'IoT & Hardware / Automação',
+    desc: 'Internet das Coisas, sistemas embarcados, automação industrial e o ecossistema maker no Brasil.',
+    color: 'var(--g3)', colorb: 'var(--g3b)',
+    tabs: ['IoT','Embarcados','Automação'],
+    content: {
+      'IoT': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Piracicaba</div><div class="d-card-val">AgTech</div><div class="d-card-sub">Raízen, ESALQ, Agricef</div></div>
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">Ind. 4.0</div><div class="d-card-sub">CPQD, Inova Unicamp</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">88%</div><div class="d-card-sub">empresas planejam expansão IoT</div></div>
+          <div class="d-card"><div class="d-card-label">Global</div><div class="d-card-val">$122,9bi</div><div class="d-card-sub">mercado embarcados 2026</div></div>
+        </div>
+        <div class="info-box">Piracicaba é reconhecida como polo de <strong>AgTech</strong>. O Parque Tecnológico abriga ~800 startups na rede virtual. CPQD está em vanguarda de NB-IoT via satélite LEO.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — IoT (Brasil)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Faixa Mensal (R$)</th></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 4.000 – 5.000</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 6.000 – 9.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 9.000 – 13.000</td></tr>
+          <tr><td>Master</td><td class="salary-val">R$ 13.000 – 20.000</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Tecnologias</h4>
+        <div class="techs"><span class="tech">C / C++</span><span class="tech">Python</span><span class="tech">JavaScript/Node</span><span class="tech">MQTT</span><span class="tech">CoAP</span><span class="tech">AWS IoT Core</span><span class="tech">Node-RED</span><span class="tech">InfluxDB</span><span class="tech">FreeRTOS</span><span class="tech">ESP-IDF</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projeto IoT</h4>
+        <div class="cost-row"><div class="cost-label">Desenvolvimento</div><div class="cost-val">R$ 120.000 – 750.000 <span>Dependendo da complexidade</span></div></div>
+        <div class="cost-row"><div class="cost-label">Manutenção mensal</div><div class="cost-val">R$ 4.000 – 25.000</div></div>
+        <div class="cost-row"><div class="cost-label">Consultoria/hora</div><div class="cost-val">R$ 250 – 500</div></div>`,
+
+      'Embarcados': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Piracicaba</div><div class="d-card-val">Distrito</div><div class="d-card-sub">de Inovação oficial</div></div>
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">CNPEM</div><div class="d-card-sub">Sirius + LNNano</div></div>
+          <div class="d-card"><div class="d-card-label">PJ Sênior</div><div class="d-card-val">até R$42k</div><div class="d-card-sub">Rust embarcado</div></div>
+          <div class="d-card"><div class="d-card-label">Remoto</div><div class="d-card-val">72%</div><div class="d-card-sub">profissionais exigem</div></div>
+        </div>
+        <div class="info-box">O <strong>Raspberry Pi RP2350</strong> (dual ARM Cortex-M33 + RISC-V) e ESP32-C6 (Wi-Fi 6) marcam o estado da arte. RISC-V corrói o monopólio ARM globalmente.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial 2026 — Embarcados</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>CLT/mês (R$)</th></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 6.050 – 8.750</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 8.950 – 15.750</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 12.300 – 20.700</td></tr>
+          <tr><td>Master / IA</td><td class="salary-val">R$ 19.500 – 27.100</td></tr>
+          <tr><td>Gestor (PMO/CIO)</td><td class="salary-val">R$ 22.000 – 53.600</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Microcontroladores em destaque</h4>
+        <div class="techs"><span class="tech">WCH CH32V003 (RISC-V)</span><span class="tech">Puya PY32 (Cortex-M0+)</span><span class="tech">RP2350 (Pico 2)</span><span class="tech">ESP32-C6</span><span class="tech">GigaDevice GD32</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Linguagens e RTOS</h4>
+        <div class="techs"><span class="tech">C / C++</span><span class="tech">Rust (novo padrão)</span><span class="tech">MicroPython</span><span class="tech">FreeRTOS</span><span class="tech">Zephyr RTOS</span><span class="tech">PlatformIO</span></div>`,
+
+      'Automação': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">BotCity</div><div class="d-card-sub">RPA líder do Brasil</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">Ind. 4.0</div><div class="d-card-sub">manufatura, logística, saúde</div></div>
+          <div class="d-card"><div class="d-card-label">Global</div><div class="d-card-val">RPA+IA</div><div class="d-card-sub">digital twins, CI/CD</div></div>
+          <div class="d-card"><div class="d-card-label">Specialist</div><div class="d-card-val">R$15k+</div><div class="d-card-sub">Master/Especialista</div></div>
+        </div>
+        <div class="info-box"><strong>BotCity</strong> (Campinas) lidera em RPA com Python. O Parque Techno Park e CPQD concentram inovação em automação industrial na região.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — Automação</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Faixa Mensal (R$)</th></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 3.500 – 5.500</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 6.000 – 9.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 10.000 – 15.000</td></tr>
+          <tr><td>Especialista</td><td class="salary-val">R$ 15.000+</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Ferramentas</h4>
+        <div class="techs"><span class="tech">BotCity</span><span class="tech">UiPath</span><span class="tech">Automation Anywhere</span><span class="tech">Jenkins</span><span class="tech">Docker / Kubernetes</span><span class="tech">GitLab CI/CD</span><span class="tech">Siemens TIA Portal</span><span class="tech">MQTT / OPC UA</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projetos de Automação</h4>
+        <div class="cost-row"><div class="cost-label">Simples</div><div class="cost-val">R$ 15.000 – 50.000</div></div>
+        <div class="cost-row"><div class="cost-label">Médio</div><div class="cost-val">R$ 50.000 – 150.000</div></div>
+        <div class="cost-row"><div class="cost-label">Complexo</div><div class="cost-val">R$ 150.000+</div></div>`
+    }
+  },
+
+  4: {
+    label: 'Grupo 04',
+    title: 'Segurança & Redes',
+    desc: 'Cibersegurança, pentest, proteção de dados, redes corporativas e consultoria especializada.',
+    color: 'var(--g4)', colorb: 'var(--g4b)',
+    tabs: ['Segurança','Redes'],
+    content: {
+      'Segurança': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Campinas</div><div class="d-card-val">157</div><div class="d-card-sub">vagas analista SI (Glassdoor)</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">750k</div><div class="d-card-sub">déficit profissionais</div></div>
+          <div class="d-card"><div class="d-card-label">Mercado BR</div><div class="d-card-val">R$104,6bi</div><div class="d-card-sub">2025–2028 (Brasscom)</div></div>
+          <div class="d-card"><div class="d-card-label">Global</div><div class="d-card-val">4,76M</div><div class="d-card-sub">vagas não preenchidas</div></div>
+        </div>
+        <div class="info-box">87% das empresas sofreram violações em 2023 por falta de profissionais. Ataques por IA ultrapassaram <strong>28 milhões de incidentes</strong> em 2025 (+72%). Empresas contratantes: Bradesco, TIVIT, Bauminas, Security First.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — Cibersegurança (Glassdoor)</h4>
+        <table class="salary-table">
+          <tr><th>Cargo</th><th>Faixa Mensal (R$)</th></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 3.300 – 5.300</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 8.700 – 14.400</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 11.750 – 19.600</td></tr>
+          <tr><td>Pentester</td><td class="salary-val">R$ 6.300 – 12.300</td></tr>
+          <tr><td>Engenheiro de Ciber.</td><td class="salary-val">R$ 10.300 – 20.300</td></tr>
+          <tr><td>Analista de Malware</td><td class="salary-val">R$ 9.300 – 20.300</td></tr>
+          <tr><td>Cloud Security Spec.</td><td class="salary-val">R$ 14.300 – 20.300</td></tr>
+          <tr><td>Arquitetura de Seg.</td><td class="salary-val">R$ 18.300 – 25.300</td></tr>
+          <tr><td>Coord. de Segurança</td><td class="salary-val">R$ 17.650 – 24.050</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Linguagens</h4>
+        <div class="techs"><span class="tech">Python</span><span class="tech">C / C++</span><span class="tech">JavaScript</span><span class="tech">Bash</span><span class="tech">PowerShell</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Ferramentas principais</h4>
+        <div class="techs"><span class="tech">EDR / XDR</span><span class="tech">Firewall</span><span class="tech">SIEM</span><span class="tech">Pentest Tools</span><span class="tech">Fortinet</span><span class="tech">Azure Security</span><span class="tech">Kali Linux</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projetos / Consultoria</h4>
+        <div class="cost-row"><div class="cost-label">Adequação LGPD</div><div class="cost-val">R$ 4.750 (Sebrae ES)</div></div>
+        <div class="cost-row"><div class="cost-label">Software segurança</div><div class="cost-val">até R$ 800.000+ <span>Alta complexidade</span></div></div>
+        <div class="cost-row"><div class="cost-label">Violação de dados BR</div><div class="cost-val">R$ 6,9M <span>Custo médio (prejuízo)</span></div></div>`,
+
+      'Redes': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Demanda SP</div><div class="d-card-val">Alta</div><div class="d-card-sub">financeiro, telecom, saúde</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">Crescendo</div><div class="d-card-sub">IoT + cloud + 5G</div></div>
+          <div class="d-card"><div class="d-card-label">Global</div><div class="d-card-val">5G / SD-WAN</div><div class="d-card-sub">cidades inteligentes</div></div>
+          <div class="d-card"><div class="d-card-label">Piracicaba</div><div class="d-card-val">Estágios</div><div class="d-card-sub">Valinhos, Indaiatuba</div></div>
+        </div>
+        <div class="info-box">A digitalização acelerada e expansão IoT intensificam a demanda por especialistas em redes capazes de integrar performance, confiabilidade e segurança.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — Redes</h4>
+        <table class="salary-table">
+          <tr><th>Cargo</th><th>Faixa Mensal (R$)</th></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 2.500 – 4.500</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 5.000 – 9.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 9.000 – 15.000</td></tr>
+          <tr><td>Técnico de Redes</td><td class="salary-val">R$ 3.000 – 6.000</td></tr>
+          <tr><td>Administrador</td><td class="salary-val">R$ 6.000 – 12.000</td></tr>
+          <tr><td>Engenheiro de Redes</td><td class="salary-val">R$ 8.000 – 16.000</td></tr>
+          <tr><td>Especialista Seg. Redes</td><td class="salary-val">R$ 10.000 – 20.000</td></tr>
+          <tr><td>Arquiteto de Redes</td><td class="salary-val">R$ 15.000 – 25.000</td></tr>
+          <tr><td>Consultor de Redes</td><td class="salary-val">R$ 7.000 – 18.000</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Tecnologias e Ferramentas</h4>
+        <div class="techs"><span class="tech">Firewall / UTM</span><span class="tech">SD-WAN</span><span class="tech">IDS / IPS</span><span class="tech">SIEM</span><span class="tech">Wireshark</span><span class="tech">IPAM</span><span class="tech">Zabbix / PRTG</span><span class="tech">VPN</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Serviços</h4>
+        <div class="cost-row"><div class="cost-label">Consultoria implementação</div><div class="cost-val">R$ 5.000 – 100.000+</div></div>
+        <div class="cost-row"><div class="cost-label">Auditoria de redes</div><div class="cost-val">R$ 4.000 – 30.000+</div></div>
+        <div class="cost-row"><div class="cost-label">Suporte técnico mensal</div><div class="cost-val">R$ 500 – 10.000+</div></div>
+        <div class="cost-row"><div class="cost-label">Segurança de redes</div><div class="cost-val">R$ 3.000 – 50.000+</div></div>`
+    }
+  },
+
+  5: {
+    label: 'Grupo 05',
+    title: 'Games & Web 3.0 / Blockchain',
+    desc: 'Desenvolvimento de jogos com Unity e Unreal Engine; contratos inteligentes, DeFi e o ecossistema Web3.',
+    color: 'var(--g5)', colorb: 'var(--g5b)',
+    tabs: ['Games','Web3 / Blockchain','Freelance & Plataformas'],
+    content: {
+      'Games': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Mercado Global</div><div class="d-card-val">$200bi</div><div class="d-card-sub">por ano, +15% a.a.</div></div>
+          <div class="d-card"><div class="d-card-label">Jogadores</div><div class="d-card-val">2,2bi</div><div class="d-card-sub">ativos no mundo</div></div>
+          <div class="d-card"><div class="d-card-label">Empresas no BR</div><div class="d-card-val">Wildlife</div><div class="d-card-sub">maior estúdio mobile LA</div></div>
+          <div class="d-card"><div class="d-card-label">EUA Sênior</div><div class="d-card-val">$112k–198k</div><div class="d-card-sub">por ano</div></div>
+        </div>
+        <div class="info-box">O Brasil é o maior mercado de games da América Latina. Estúdios: <strong>Wildlife Studios, Amber Studio, Electric Monkeys, Oktagon Games</strong>. EA e Ubisoft terceirizam para o país.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — Games (Brasil)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Faixa Mensal (R$)</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.000 – 1.800</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 3.000 – 4.500</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 6.000 – 9.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 10.000 – 16.000</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Stack de Games</h4>
+        <div class="techs"><span class="tech">Unity (C#)</span><span class="tech">Unreal Engine 5 (C++)</span><span class="tech">Godot 4</span><span class="tech">DOTS / ECS</span><span class="tech">Photon / Mirror</span><span class="tech">Blender / Maya</span><span class="tech">Perforce / Git</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Desenvolvimento</h4>
+        <div class="cost-row"><div class="cost-label">Jogo pequeno</div><div class="cost-val">R$ 38.500 – 126.000 <span>Indie 2D, hyper-casual mobile</span></div></div>
+        <div class="cost-row"><div class="cost-label">Jogo médio</div><div class="cost-val">R$ 465.000 – 1.840.000 <span>RPG, multiplayer, 12-24 meses</span></div></div>
+        <div class="cost-row"><div class="cost-label">Jogo grande / AA</div><div class="cost-val">R$ 7,8M – 88M+ <span>Console + PC, 3-5 anos</span></div></div>`,
+
+      'Web3 / Blockchain': `
+        <div class="demand-grid">
+          <div class="d-card"><div class="d-card-label">Mercado 2024</div><div class="d-card-val">$26,9bi</div><div class="d-card-sub">blockchain global</div></div>
+          <div class="d-card"><div class="d-card-label">Projeção 2034</div><div class="d-card-val">$1,8 tri</div><div class="d-card-sub">CAGR 52,9%</div></div>
+          <div class="d-card"><div class="d-card-label">Salário Web3</div><div class="d-card-val">+32%</div><div class="d-card-sub">vs Web2 equivalente</div></div>
+          <div class="d-card"><div class="d-card-label">Brasil</div><div class="d-card-val">Real Digital</div><div class="d-card-sub">Drex / Banco Central</div></div>
+        </div>
+        <div class="info-box">Empresas BR: <strong>Mercado Bitcoin, Foxbit, Liqi, Vortx, Parfin</strong>. Global: Consensys, Chainlink Labs, Polygon Labs, Uniswap. Real Digital (Drex) abre oportunidades locais.</div>
+        <h4 style="margin-bottom:12px;font-size:.95rem">Faixa Salarial — Web3 (Brasil)</h4>
+        <table class="salary-table">
+          <tr><th>Nível</th><th>Faixa Mensal (R$)</th></tr>
+          <tr><td>Estágio</td><td class="salary-val">R$ 1.200 – 2.000</td></tr>
+          <tr><td>Júnior</td><td class="salary-val">R$ 4.000 – 6.500</td></tr>
+          <tr><td>Pleno</td><td class="salary-val">R$ 8.000 – 15.000</td></tr>
+          <tr><td>Sênior</td><td class="salary-val">R$ 15.000 – 30.000</td></tr>
+          <tr><td>Sênior (EUA)</td><td class="salary-val">$150k – $231k/ano</td></tr>
+        </table>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Tecnologias Web3</h4>
+        <div class="techs"><span class="tech">Solidity</span><span class="tech">Rust (Solana)</span><span class="tech">JavaScript/TypeScript</span><span class="tech">Hardhat / Foundry</span><span class="tech">OpenZeppelin</span><span class="tech">ethers.js</span><span class="tech">Chainlink</span><span class="tech">The Graph</span><span class="tech">IPFS</span></div>
+        <h4 style="margin:20px 0 10px;font-size:.95rem">Custo de Projetos Web3</h4>
+        <div class="cost-row"><div class="cost-label">Projeto pequeno</div><div class="cost-val">R$ 41.000 – 125.500 <span>Token ERC-20, NFT collection, DAO simples</span></div></div>
+        <div class="cost-row"><div class="cost-label">Projeto médio</div><div class="cost-val">R$ 290.000 – 1.250.000 <span>DeFi, marketplace NFT, multi-chain</span></div></div>
+        <div class="cost-row"><div class="cost-label">Projeto grande</div><div class="cost-val">R$ 5,3M – 44M+ <span>DEX, Layer 1, plataforma institucional</span></div></div>`,
+
+      'Freelance & Plataformas': `
+        <div class="info-box" style="margin-bottom:28px">Principais plataformas para encontrar trabalho ou contratar nas áreas de Games e Web3.</div>
+        <div class="freelance-grid">
+          <div class="f-card">
+            <h4>Workana</h4>
+            <p>Maior plataforma freelance da América Latina. Paga em reais, fatura PJ.</p>
+            <div class="f-price">Games: R$ 25–80/h · Web3: R$ 50–150/h</div>
+          </div>
+          <div class="f-card">
+            <h4>99Freelas</h4>
+            <p>Plataforma brasileira, projetos menores e clientes nacionais. Ideal para portfólio.</p>
+            <div class="f-price">Games: R$ 15–60/h · Web3: R$ 30–100/h</div>
+          </div>
+          <div class="f-card">
+            <h4>Upwork</h4>
+            <p>Maior plataforma global. Acesso a clientes do mundo inteiro. Pagamento em USD.</p>
+            <div class="f-price">Games: $15–80/h · Web3 Solidity: $40–200/h</div>
+          </div>
+          <div class="f-card">
+            <h4>web3.career</h4>
+            <p>Específica para Web3. Vagas globais remotas, alto volume de contratos blockchain.</p>
+            <div class="f-price">Máxima demanda Web3</div>
+          </div>
+          <div class="f-card">
+            <h4>CryptoJobsList</h4>
+            <p>Plataforma exclusiva cripto/blockchain. Projetos DAO, DeFi e smart contracts.</p>
+            <div class="f-price">Salários em USD + tokens</div>
+          </div>
+          <div class="f-card">
+            <h4>itch.io / LinkedIn</h4>
+            <p>Para games: publique projetos no itch.io. LinkedIn para contato com estúdios.</p>
+            <div class="f-price">Portfólio obrigatório</div>
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:24px">💡 Dica: Comece no Workana/99Freelas para construir histórico, depois migre para Upwork e acesse contratos globais em USD. Hackathons (ETHGlobal, Chainlink Hackathon) são vitais para Web3.</div>`
+    }
+  }
+};
+
+// ─── MODAL LOGIC ─────────────────────────────────────────────────────────────
+
+let currentGroup = null;
+
+function openModal(groupId) {
+  const g = groups[groupId];
+  currentGroup = groupId;
+  const overlay = document.getElementById('overlay');
+  const modal = document.getElementById('modal');
+
+  // Set color vars
+  modal.style.setProperty('--c', g.color);
+  modal.style.setProperty('--cb', g.colorb);
+  document.getElementById('modal-group-label').textContent = g.label;
+  document.getElementById('modal-title').textContent = g.title;
+  document.getElementById('modal-desc').textContent = g.desc;
+
+  // Build tabs
+  const tabsEl = document.getElementById('modal-tabs');
+  tabsEl.innerHTML = '';
+  g.tabs.forEach((tab, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (i === 0 ? ' active' : '');
+    btn.textContent = tab;
+    btn.onclick = () => switchTab(tab, groupId);
+    tabsEl.appendChild(btn);
+  });
+
+  // First content
+  document.getElementById('modal-content').innerHTML = g.content[g.tabs[0]];
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function switchTab(tabName, groupId) {
+  const g = groups[groupId];
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.textContent === tabName);
+  });
+  document.getElementById('modal-content').innerHTML = g.content[tabName];
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('overlay')) closeModal();
+}
+
+function showHome() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollTo(sel) {
+  document.querySelector(sel).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>
