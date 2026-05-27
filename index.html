@@ -6,7 +6,7 @@
 <title>Mapa de Carreira — Engenharia da Computação | SECOMP 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#1c1f2e; --bg2:#232738; --card:#252a3a; --card2:#2a2f42;
@@ -21,13 +21,13 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Syne',sans-serif;color:var(--white)}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;color:var(--white)}
 .mono{font-family:'DM Mono',monospace}
 a{text-decoration:none}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:flex-start;padding:16px 48px;background:rgba(28,31,46,0.90);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);cursor:pointer}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);cursor:pointer}
 .nav-logo span{color:var(--g1)}
 
 /* HERO */
@@ -37,14 +37,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--g1b);border:1px solid rgba(56,189,248,.30);color:var(--g1);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:28px;animation:fadeUp .7s ease both}
 .badge::before{content:'●';animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeUp .7s .1s ease both}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeUp .7s .1s ease both}
 .hero h1 em{font-style:normal;color:var(--g1)}
 .hero-sub{max-width:520px;color:var(--dim);font-size:17px;margin-bottom:48px;animation:fadeUp .7s .2s ease both}
 .hero-stats{display:flex;gap:48px;flex-wrap:wrap;justify-content:center;margin-bottom:60px;animation:fadeUp .7s .3s ease both}
 .stat{text-align:center}
-.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white)}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--white)}
 .stat-label{font-size:11px;color:var(--dim);letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--g1);color:#0a0c16;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;padding:14px 32px;border-radius:12px;cursor:pointer;transition:opacity .2s,transform .2s;animation:fadeUp .7s .4s ease both}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--g1);color:#0a0c16;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;padding:14px 32px;border-radius:12px;cursor:pointer;transition:opacity .2s,transform .2s;animation:fadeUp .7s .4s ease both}
 .hero-cta:hover{opacity:.88;transform:translateY(-2px)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
@@ -52,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .section{padding:80px 0}
 .container{max-width:1180px;margin:0 auto;padding:0 32px}
 .sec-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
-.sec-title{font-size:2rem;font-weight:800;margin-bottom:12px}
+.sec-title{font-size:2rem;font-weight:700;margin-bottom:12px}
 .sec-desc{color:var(--dim);max-width:520px;margin-bottom:48px;font-size:15px}
 
 /* GROUPS HUB */
@@ -87,7 +87,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .modal-close{position:absolute;top:28px;right:32px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;color:var(--dim);font-size:18px;transition:color .2s,border-color .2s}
 .modal-close:hover{color:var(--white);border-color:var(--border2)}
 .modal-group-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--c,var(--g1));margin-bottom:10px}
-.modal-title{font-size:1.8rem;font-weight:800;margin-bottom:8px}
+.modal-title{font-size:1.8rem;font-weight:700;margin-bottom:8px}
 .modal-desc{color:var(--dim);font-size:14px;max-width:580px}
 .modal-body{padding:32px 40px 40px}
 
@@ -114,7 +114,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .demand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:28px}
 .d-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
 .d-card-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
-.d-card-val{font-family:'Syne',monospace;font-size:1.4rem;font-weight:700;color:var(--white)}
+.d-card-val{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:700;color:var(--white)}
 .d-card-sub{font-size:12px;color:var(--dim);margin-top:4px}
 
 /* TECH PILLS */
@@ -167,7 +167,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;color
 .sv-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
 .sv-top{display:flex;align-items:center;gap:10px;margin-bottom:18px}
 .sv-icon{font-size:20px}
-.sv-label{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white)}
+.sv-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--white)}
 .sv-rows{display:flex;flex-direction:column;gap:10px}
 .sv-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;font-size:13px;color:var(--text);position:relative}
 .sv-row span:first-child{color:var(--dim);font-size:12px}
